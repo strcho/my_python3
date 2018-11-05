@@ -1,3 +1,3 @@
 # my_python3
 
-[baidu](baidu.com)
+[baidu](www.baidu.com)
