@@ -1,3 +1,3 @@
 # my_python3
 
-[baidu](https://hao.360.cn/?wd_xp1)
+[神经网络的实现](神经网络的实现)
