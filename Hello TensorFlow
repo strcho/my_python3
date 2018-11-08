@@ -1,0 +1,43 @@
+import time
+import tensorflow as tf
+import scipy.misc
+import os
+import numpy as np
+from tensorflow.examples.tutorials.mnist import input_data
+mnist = input_data.read_data_sets("MNIST_data/",one_hot= True)
+#查看训练数据集的大小
+#print(mnist.train.images.shape)#输出样本数量及其维数
+#print(mnist.train.labels.shape)#输出标签数量及其维度
+#
+##查看验证数据集的大小
+#print(mnist.validation.images.shape)#输出样本数量及其维数
+#print(mnist.validation.labels.shape)#输出标签数量及其维数
+#
+##查看测试数据集的大小
+#print(mnist.test.images.shape)#输出样本数量及其维数
+#print(mnist.test.labels.shape)#输出标签数量及其维数
+
+#查看数据的向量表示
+#print(mnist.train.images[0,:])
+#print(mnist.train.labels[0,:])
+
+#创建文件夹，将训练集中的前100个样本保存为图片
+save_dir = "MNIST_data/raw/"
+if os.path.exists(save_dir) is False:
+    os.mkdir(save_dir)
+    
+    
+def get_num(i):       
+    ls = mnist.train.labels[i,:]
+    return ls.tolist().index(1)
+
+def save_image():
+    for i in range(0,100):
+        image_array = mnist.train.images[i,:]
+        image_array = image_array.reshape(28,28)
+        num = get_num(i)
+        file_name = save_dir+'number{}is{}.jpg'.format(i+1,num)
+        print(file_name)
+#        scipy.misc.imsave(file_name,image_array)#另一种将数组保存为图片的方法
+        scipy.misc.toimage(image_array, cmin=0.0, cmax=1.0).save(file_name)
+save_image()
